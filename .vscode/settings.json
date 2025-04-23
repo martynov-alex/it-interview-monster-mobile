@@ -2,9 +2,13 @@
   "dart.flutterSdkPath": ".fvm/versions/3.29.3",
   "cSpell.words": [
     "buildlog",
+    "cronet",
+    "excludesfile",
+    "hexcode",
     "onauth",
     "swiftpm",
     "Symbolication",
+    "tmpl",
     "userpic"
   ]
 }
