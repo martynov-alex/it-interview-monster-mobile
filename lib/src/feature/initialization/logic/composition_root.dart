@@ -10,16 +10,11 @@ import 'package:logger/logger.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-/// {@template composition_root}
 /// A place where top-level dependencies are initialized.
-/// {@endtemplate}
 ///
-/// {@template composition_process}
 /// Composition of dependencies is a process of creating and configuring
 /// instances of classes that are required for the application to work.
-/// {@endtemplate}
 final class CompositionRoot {
-  /// {@macro composition_root}
   const CompositionRoot({required this.config, required this.logger, required this.errorReporter});
 
   /// Application configuration.
@@ -50,13 +45,8 @@ final class CompositionRoot {
   }
 }
 
-/// {@template composition_result}
 /// Result of composition.
-///
-/// {@macro composition_process}
-/// {@endtemplate}
 final class CompositionResult {
-  /// {@macro composition_result}
   const CompositionResult({required this.dependencies, required this.millisecondsSpent});
 
   /// The dependencies container.

@@ -12,11 +12,8 @@ import 'package:it_interview_monster/src/feature/initialization/widget/initializ
 import 'package:it_interview_monster/src/feature/initialization/widget/root_context.dart';
 import 'package:logger/logger.dart';
 
-/// {@template app_runner}
 /// A class that is responsible for running the application.
-/// {@endtemplate}
 sealed class AppRunner {
-  /// {@macro app_runner}
   const AppRunner._();
 
   /// Initializes dependencies and launches the application within a guarded execution zone.
