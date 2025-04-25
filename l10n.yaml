@@ -4,3 +4,4 @@ template-arb-file: intl_en.arb
 output-localization-file: app_localizations.gen.dart
 output-dir: lib/src/core/constant/localization/generated
 synthetic-package: false
+nullable-getter: false

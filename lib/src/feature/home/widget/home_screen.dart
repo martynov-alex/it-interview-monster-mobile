@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:it_interview_monster/src/core/constant/localization/app_localization_extension.dart';
 import 'package:it_interview_monster/src/feature/initialization/widget/dependencies_scope.dart';
 
 /// HomeScreen is a simple screen that displays a grid of items.
@@ -28,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              'Hello world!',
+              context.l10n.appTitle,
               style: Theme.of(context).textTheme.headlineLarge,
             ),
             const SizedBox(height: 16),

@@ -6,7 +6,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
 import 'app_localizations_en.gen.dart';
-import 'app_localizations_es.gen.dart';
+import 'app_localizations_ru.gen.dart';
 
 // ignore_for_file: type=lint
 
@@ -66,8 +66,8 @@ abstract class AppLocalizations {
 
   final String localeName;
 
-  static AppLocalizations? of(BuildContext context) {
-    return Localizations.of<AppLocalizations>(context, AppLocalizations);
+  static AppLocalizations of(BuildContext context) {
+    return Localizations.of<AppLocalizations>(context, AppLocalizations)!;
   }
 
   static const LocalizationsDelegate<AppLocalizations> delegate = _AppLocalizationsDelegate();
@@ -92,32 +92,14 @@ abstract class AppLocalizations {
   /// A list of this localizations delegate's supported locales.
   static const List<Locale> supportedLocales = <Locale>[
     Locale('en'),
-    Locale('es')
+    Locale('ru')
   ];
 
-  /// The title of the application
+  /// No description provided for @appTitle.
   ///
   /// In en, this message translates to:
-  /// **'sizzle_starter'**
+  /// **'IT Interview Monster'**
   String get appTitle;
-
-  /// Custom colors for the application
-  ///
-  /// In en, this message translates to:
-  /// **'Custom Colors'**
-  String get custom_colors;
-
-  /// Default themes for the application
-  ///
-  /// In en, this message translates to:
-  /// **'Default Themes'**
-  String get default_themes;
-
-  /// Locales for the application
-  ///
-  /// In en, this message translates to:
-  /// **'Locales'**
-  String get locales;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
@@ -129,7 +111,7 @@ class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> 
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['en', 'es'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['en', 'ru'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -141,7 +123,7 @@ AppLocalizations lookupAppLocalizations(Locale locale) {
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
     case 'en': return AppLocalizationsEn();
-    case 'es': return AppLocalizationsEs();
+    case 'ru': return AppLocalizationsRu();
   }
 
   throw FlutterError(
