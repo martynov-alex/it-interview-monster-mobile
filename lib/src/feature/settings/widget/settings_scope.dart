@@ -4,11 +4,8 @@ import 'package:it_interview_monster/src/feature/initialization/widget/dependenc
 import 'package:it_interview_monster/src/feature/settings/bloc/app_settings_bloc.dart';
 import 'package:it_interview_monster/src/feature/settings/model/app_settings.dart';
 
-/// {@template settings_scope}
 /// SettingsScope widget.
-/// {@endtemplate}
 class SettingsScope extends StatefulWidget {
-  /// {@macro settings_scope}
   const SettingsScope({required this.child, super.key});
 
   /// The child widget.
@@ -60,11 +57,8 @@ class _SettingsScopeState extends State<SettingsScope> {
   }
 }
 
-/// {@template inherited_settings}
 /// _InheritedSettings widget.
-/// {@endtemplate}
 class _InheritedSettings extends InheritedWidget {
-  /// {@macro inherited_settings}
   const _InheritedSettings({
     required super.child,
     required this.state,

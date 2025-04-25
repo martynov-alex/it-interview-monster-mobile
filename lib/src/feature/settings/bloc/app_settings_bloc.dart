@@ -2,11 +2,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:it_interview_monster/src/feature/settings/data/app_settings_repository.dart';
 import 'package:it_interview_monster/src/feature/settings/model/app_settings.dart';
 
-/// {@template app_settings_bloc}
 /// A [Bloc] that handles [AppSettings].
-/// {@endtemplate}
 final class AppSettingsBloc extends Bloc<AppSettingsEvent, AppSettingsState> {
-  /// {@macro app_settings_bloc}
   AppSettingsBloc({
     required AppSettingsRepository appSettingsRepository,
     required AppSettingsState initialState,

@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:it_interview_monster/src/core/common/extensions/context_extension.dart';
 
-/// {@template window_size}
 /// Breakpoints for responsive design.
 ///
 /// The [WindowSize] class represents a breakpoint for responsive design.
-/// {@endtemplate}
 extension type const WindowSize(Size _size) implements Size {
   static const _medium = 600.0;
   static const _expanded = 840.0;

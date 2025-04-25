@@ -1,9 +1,7 @@
 import 'package:it_interview_monster/src/feature/settings/data/app_settings_datasource.dart';
 import 'package:it_interview_monster/src/feature/settings/model/app_settings.dart';
 
-/// {@template app_settings_repository}
 /// [AppSettingsRepository] sets and gets app settings.
-/// {@endtemplate}
 abstract interface class AppSettingsRepository {
   /// Set app settings
   Future<void> setAppSettings(AppSettings appSettings);
@@ -12,9 +10,7 @@ abstract interface class AppSettingsRepository {
   Future<AppSettings?> getAppSettings();
 }
 
-/// {@macro app_settings_repository}
 final class AppSettingsRepositoryImpl implements AppSettingsRepository {
-  /// {@macro app_settings_repository}
   const AppSettingsRepositoryImpl({required this.datasource});
 
   /// The instance of [AppSettingsDatasource] used to read and write values.

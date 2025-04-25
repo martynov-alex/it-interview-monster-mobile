@@ -1,12 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-/// {@template app_theme}
 /// An immutable class that holds properties needed to build a [ThemeData] for the app.
-/// {@endtemplate}
 @immutable
 final class AppTheme with Diagnosticable {
-  /// {@macro app_theme}
   const AppTheme({required this.themeMode, required this.seed});
 
   /// The type of theme to use.

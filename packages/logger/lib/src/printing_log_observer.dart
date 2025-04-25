@@ -3,11 +3,8 @@ import 'package:intl/intl.dart';
 import 'package:logger/logger.dart';
 import 'package:stack_trace/stack_trace.dart';
 
-/// {@template printing_log_observer}
 /// [LogObserver] that prints logs using `dart:developer`.
-/// {@endtemplate}
 final class PrintingLogObserver with LogObserver {
-  /// {@macro printing_log_observer}
   const PrintingLogObserver({required this.logLevel});
 
   /// The log level to observe.

@@ -4,13 +4,8 @@ import 'package:it_interview_monster/src/feature/settings/bloc/app_settings_bloc
 import 'package:logger/logger.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
-/// {@template dependencies_container}
 /// Container used to reuse dependencies across the application.
-///
-/// {@macro composition_process}
-/// {@endtemplate}
 class DependenciesContainer {
-  /// {@macro dependencies_container}
   const DependenciesContainer({
     required this.logger,
     required this.config,
@@ -35,14 +30,11 @@ class DependenciesContainer {
   final PackageInfo packageInfo;
 }
 
-/// {@template testing_dependencies_container}
 /// A special version of [DependenciesContainer] that is used in tests.
 ///
 /// In order to use [DependenciesContainer] in tests, it is needed to
 /// extend this class and provide the dependencies that are needed for the test.
-/// {@endtemplate}
 base class TestDependenciesContainer implements DependenciesContainer {
-  /// {@macro testing_dependencies_container}
   const TestDependenciesContainer();
 
   @override

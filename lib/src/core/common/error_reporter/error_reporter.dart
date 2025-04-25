@@ -2,11 +2,9 @@ import 'dart:async';
 
 import 'package:logger/logger.dart';
 
-/// {@template error_reporter}
 /// An interface for reporting errors.
 ///
 /// Implementations should report errors to a service like Sentry/Crashlytics.
-/// {@endtemplate}
 abstract interface class ErrorReporter {
   /// Returns `true` if the error reporting service is initialized
   /// and ready to report errors.
@@ -30,11 +28,8 @@ abstract interface class ErrorReporter {
   });
 }
 
-/// {@template error_reporter_log_observer}
 /// An observer that reports logs to the error reporter if it is active.
-/// {@endtemplate}
 final class ErrorReporterLogObserver with LogObserver {
-  /// {@macro error_reporter_log_observer}
   const ErrorReporterLogObserver(this._errorReporter);
 
   /// Error reporter used to report errors.

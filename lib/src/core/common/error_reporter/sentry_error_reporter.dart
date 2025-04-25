@@ -2,11 +2,8 @@ import 'package:flutter/foundation.dart';
 import 'package:it_interview_monster/src/core/common/error_reporter/error_reporter.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
-/// {@template sentry_error_reporter}
 /// An implementation of [ErrorReporter] that reports errors to Sentry.
-/// {@endtemplate}
 class SentryErrorReporter implements ErrorReporter {
-  /// {@macro sentry_error_reporter}
   const SentryErrorReporter({
     required this.sentryDsn,
     required this.environment,

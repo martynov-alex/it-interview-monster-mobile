@@ -4,7 +4,6 @@ import 'package:flutter/widgets.dart';
 import 'package:it_interview_monster/src/core/common/extensions/context_extension.dart';
 import 'package:it_interview_monster/src/feature/initialization/model/dependencies_container.dart';
 
-/// {@template dependencies_scope}
 /// A scope that provides composed [DependenciesContainer].
 ///
 /// **Testing**:
@@ -21,9 +20,7 @@ import 'package:it_interview_monster/src/feature/initialization/model/dependenci
 ///   final MockAuthRepository authRepository = MockAuthRepository();
 /// }
 /// ```
-/// {@endtemplate}
 class DependenciesScope extends InheritedWidget {
-  /// {@macro dependencies_scope}
   const DependenciesScope({
     required super.child,
     required this.dependencies,

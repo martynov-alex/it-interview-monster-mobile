@@ -9,7 +9,6 @@ import 'package:it_interview_monster/src/core/widget/popup/enhanced_composited_t
 typedef PopupWidgetBuilder =
     Widget Function(BuildContext context, OverlayPortalController controller);
 
-/// {@template popup}
 /// A widget that shows a follower widget relative to a target widget.
 ///
 /// Under the hood, it uses [OverlayPortal] that is a declarative version
@@ -21,11 +20,8 @@ typedef PopupWidgetBuilder =
 /// relative to a target widget. It also automatically manages the position on
 /// the screen and ensures that the follower widget is always visible
 /// (i.e. it doesn't overflow the screen) by adjusting the position.
-/// {@endtemplate}
 class PopupBuilder extends StatefulWidget {
   /// Creates a new instance of [PopupBuilder].
-  ///
-  /// {@macro popup}
   const PopupBuilder({
     required this.followerBuilder,
     required this.targetBuilder,
@@ -172,16 +168,12 @@ abstract interface class PopupFollowerController {
   void dismiss();
 }
 
-/// {@template popup_follower}
 /// A widget that adds additional functionality to the child widget.
 ///
 /// It listens for the escape key and dismisses the popup when pressed.
 /// It also listens for the tap outside the child widget and dismisses the popup.
-/// {@endtemplate}
 class PopupFollower extends StatefulWidget {
   /// Creates a new instance of [PopupFollower].
-  ///
-  /// {@macro popup_follower}
   const PopupFollower({
     required this.child,
     this.onDismiss,

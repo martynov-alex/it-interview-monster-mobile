@@ -7,9 +7,7 @@ import 'package:it_interview_monster/src/feature/settings/model/app_settings.dar
 import 'package:it_interview_monster/src/feature/settings/model/app_theme.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-/// {@template app_settings_datasource}
 /// [AppSettingsDatasource] sets and gets app settings.
-/// {@endtemplate}
 abstract interface class AppSettingsDatasource {
   /// Set app settings
   Future<void> setAppSettings(AppSettings appSettings);
@@ -18,9 +16,7 @@ abstract interface class AppSettingsDatasource {
   Future<AppSettings?> getAppSettings();
 }
 
-/// {@macro app_settings_datasource}
 final class AppSettingsDatasourceImpl implements AppSettingsDatasource {
-  /// {@macro app_settings_datasource}
   AppSettingsDatasourceImpl({required this.sharedPreferences});
 
   /// The instance of [SharedPreferences] used to read and write values.

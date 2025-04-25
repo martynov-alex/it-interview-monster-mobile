@@ -68,7 +68,6 @@ class EnhancedCompositedTransformFollower
   /// The anchor point on the linked [CompositedTransformTarget] that
   /// [followerAnchor] will line up with.
   ///
-  /// {@template flutter.widgets.CompositedTransformFollower.targetAnchor}
   /// For example, when [targetAnchor] and [followerAnchor] are both
   /// [Alignment.topLeft], this widget will be top left aligned with the linked
   /// [CompositedTransformTarget]. When [targetAnchor] is
@@ -76,7 +75,6 @@ class EnhancedCompositedTransformFollower
   /// widget will be left aligned with the linked [CompositedTransformTarget],
   /// and its top edge will line up with the [CompositedTransformTarget]'s
   /// bottom edge.
-  /// {@endtemplate}
   ///
   /// Defaults to [Alignment.topLeft].
   final Alignment targetAnchor;
@@ -84,7 +82,6 @@ class EnhancedCompositedTransformFollower
   /// The anchor point on this widget that will line up with [targetAnchor] on
   /// the linked [CompositedTransformTarget].
   ///
-  /// {@macro flutter.widgets.CompositedTransformFollower.targetAnchor}
   ///
   /// Defaults to [Alignment.topLeft].
   final Alignment followerAnchor;
@@ -263,7 +260,6 @@ class EnhancedRenderFollowerLayer extends RenderProxyBox {
   /// The anchor point on the linked [RenderLeaderLayer] that [followerAnchor]
   /// will line up with.
   ///
-  /// {@template flutter.rendering.RenderFollowerLayer.leaderAnchor}
   /// For example, when [leaderAnchor] and [followerAnchor] are both
   /// [Alignment.topLeft], this [EnhancedRenderFollowerLayer] will be top left aligned
   /// with the linked [RenderLeaderLayer]. When [leaderAnchor] is
@@ -271,7 +267,6 @@ class EnhancedRenderFollowerLayer extends RenderProxyBox {
   /// [EnhancedRenderFollowerLayer] will be left aligned with the linked
   /// [RenderLeaderLayer], and its top edge will line up with the
   /// [RenderLeaderLayer]'s bottom edge.
-  /// {@endtemplate}
   ///
   /// Defaults to [Alignment.topLeft].
   Alignment get leaderAnchor => _leaderAnchor;
@@ -286,8 +281,6 @@ class EnhancedRenderFollowerLayer extends RenderProxyBox {
 
   /// The anchor point on this [EnhancedRenderFollowerLayer] that will line up with
   /// [followerAnchor] on the linked [RenderLeaderLayer].
-  ///
-  /// {@macro flutter.rendering.RenderFollowerLayer.leaderAnchor}
   ///
   /// Defaults to [Alignment.topLeft].
   Alignment get followerAnchor => _followerAnchor;

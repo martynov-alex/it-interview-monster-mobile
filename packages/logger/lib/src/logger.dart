@@ -2,7 +2,6 @@ import 'package:clock/clock.dart';
 import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
 
-/// {@template logger}
 /// Base class for logging.
 ///
 /// By default, it doesn't log anything. To log messages, you can extend this class
@@ -12,11 +11,8 @@ import 'package:logger/logger.dart';
 /// To log a message, use [trace], [debug], [info], [warn], [error], [fatal] methods.
 ///
 /// To destroy the logger and release all resources, use the [destroy] method.
-/// {@endtemplate}
 base class Logger {
   /// Constructs an instance of [Logger].
-  ///
-  /// {@macro logger}
   Logger();
 
   final _observers = <LogObserver>{};
@@ -188,9 +184,7 @@ enum LogLevel implements Comparable<LogLevel> {
   };
 }
 
-/// {@template log_observer}
 /// Observer class, that is notified when a new log message is created
-/// {@endtemplate}
 mixin class LogObserver {
   /// Constructs an instance of [LogObserver].
   const LogObserver();

@@ -1,10 +1,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-/// {@template persisted_entry}
 /// [PersistedEntry] describes a single persisted entry.
-/// {@endtemplate}
 abstract class PersistedEntry<T extends Object> {
-  /// {@macro persisted_entry}
   const PersistedEntry();
 
   /// Read the value from the cache.
@@ -21,12 +18,9 @@ abstract class PersistedEntry<T extends Object> {
       value == null ? remove() : set(value);
 }
 
-/// {@template shared_preferences_entry}
 /// [SharedPreferencesEntry] describes a single persisted entry in [SharedPreferences].
-/// {@endtemplate}
 abstract class SharedPreferencesEntry<T extends Object>
     extends PersistedEntry<T> {
-  /// {@macro shared_preferences_entry}
   const SharedPreferencesEntry({
     required this.sharedPreferences,
     required this.key,
@@ -41,7 +35,6 @@ abstract class SharedPreferencesEntry<T extends Object>
 
 /// A [int] implementation of [SharedPreferencesEntry].
 class IntPreferencesEntry extends SharedPreferencesEntry<int> {
-  /// {@macro int_preferences_entry}
   const IntPreferencesEntry({
     required super.sharedPreferences,
     required super.key,
@@ -63,7 +56,6 @@ class IntPreferencesEntry extends SharedPreferencesEntry<int> {
 
 /// A [String] implementation of [SharedPreferencesEntry].
 class StringPreferencesEntry extends SharedPreferencesEntry<String> {
-  /// {@macro string_preferences_entry}
   const StringPreferencesEntry({
     required super.sharedPreferences,
     required super.key,
@@ -85,7 +77,6 @@ class StringPreferencesEntry extends SharedPreferencesEntry<String> {
 
 /// A [bool] implementation of [SharedPreferencesEntry].
 class BoolPreferencesEntry extends SharedPreferencesEntry<bool> {
-  /// {@macro bool_preferences_entry}
   const BoolPreferencesEntry({
     required super.sharedPreferences,
     required super.key,
@@ -107,7 +98,6 @@ class BoolPreferencesEntry extends SharedPreferencesEntry<bool> {
 
 /// A [double] implementation of [SharedPreferencesEntry].
 class DoublePreferencesEntry extends SharedPreferencesEntry<double> {
-  /// {@macro double_preferences_entry}
   const DoublePreferencesEntry({
     required super.sharedPreferences,
     required super.key,
@@ -129,7 +119,6 @@ class DoublePreferencesEntry extends SharedPreferencesEntry<double> {
 
 /// A [List<String>] implementation of [SharedPreferencesEntry].
 class StringListPreferencesEntry extends SharedPreferencesEntry<List<String>> {
-  /// {@macro string_list_preferences_entry}
   const StringListPreferencesEntry({
     required super.sharedPreferences,
     required super.key,

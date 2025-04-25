@@ -4,13 +4,10 @@ import 'package:it_interview_monster/src/feature/home/widget/home_screen.dart';
 import 'package:it_interview_monster/src/feature/settings/model/app_theme.dart';
 import 'package:it_interview_monster/src/feature/settings/widget/settings_scope.dart';
 
-/// {@template material_context}
 /// [MaterialContext] is an entry point to the material context.
 ///
 /// This widget sets locales, themes and routing.
-/// {@endtemplate}
 class MaterialContext extends StatelessWidget {
-  /// {@macro material_context}
   const MaterialContext({super.key});
 
   // This global key is needed for [MaterialApp]
