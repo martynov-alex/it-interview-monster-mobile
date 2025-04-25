@@ -24,7 +24,10 @@ abstract interface class ErrorReporter {
   ///
   /// The [throwable] is the exception that was thrown.
   /// The [stackTrace] is the stack trace associated with the exception.
-  Future<void> captureException({required Object throwable, StackTrace? stackTrace});
+  Future<void> captureException({
+    required Object throwable,
+    StackTrace? stackTrace,
+  });
 }
 
 /// {@template error_reporter_log_observer}
@@ -45,7 +48,8 @@ final class ErrorReporterLogObserver with LogObserver {
     // If the log level is error or higher, report the error
     if (logMessage.level.index >= LogLevel.error.index) {
       _errorReporter.captureException(
-        throwable: logMessage.error ?? ReportedMessageException(logMessage.message),
+        throwable:
+            logMessage.error ?? ReportedMessageException(logMessage.message),
         stackTrace: logMessage.stackTrace ?? StackTrace.current,
       );
     }

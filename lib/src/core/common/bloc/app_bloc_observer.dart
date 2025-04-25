@@ -11,7 +11,10 @@ class AppBlocObserver extends BlocObserver {
   final Logger logger;
 
   @override
-  void onTransition(Bloc<Object?, Object?> bloc, Transition<Object?, Object?> transition) {
+  void onTransition(
+    Bloc<Object?, Object?> bloc,
+    Transition<Object?, Object?> transition,
+  ) {
     final logMessage =
         StringBuffer()
           ..writeln('Bloc: ${bloc.runtimeType}')

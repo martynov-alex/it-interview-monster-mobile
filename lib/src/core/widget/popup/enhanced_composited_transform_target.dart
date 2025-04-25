@@ -45,7 +45,11 @@ class EnhancedCompositedTransformTarget extends SingleChildRenderObjectWidget {
   ///
   /// The [link] property must not be currently used by any other
   /// [EnhancedCompositedTransformTarget] object that is in the tree.
-  const EnhancedCompositedTransformTarget({required this.link, super.key, super.child});
+  const EnhancedCompositedTransformTarget({
+    required this.link,
+    super.key,
+    super.child,
+  });
 
   /// The link object that connects this [EnhancedCompositedTransformTarget] with one or
   /// more [CompositedTransformFollower]s.
@@ -59,7 +63,10 @@ class EnhancedCompositedTransformTarget extends SingleChildRenderObjectWidget {
       EnhancedRenderLeaderLayer(link: link);
 
   @override
-  void updateRenderObject(BuildContext context, EnhancedRenderLeaderLayer renderObject) {
+  void updateRenderObject(
+    BuildContext context,
+    EnhancedRenderLeaderLayer renderObject,
+  ) {
     renderObject.link = link;
   }
 }

@@ -24,7 +24,12 @@ final class _ThemeModeDecoder extends Converter<String, ThemeMode> {
     'ThemeMode.dark' => ThemeMode.dark,
     'ThemeMode.light' => ThemeMode.light,
     'ThemeMode.system' => ThemeMode.system,
-    _ => throw ArgumentError.value(input, 'input', 'Cannot convert $input to $ThemeMode'),
+    _ =>
+      throw ArgumentError.value(
+        input,
+        'input',
+        'Cannot convert $input to $ThemeMode',
+      ),
   };
 }
 

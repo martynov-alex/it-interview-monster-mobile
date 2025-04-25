@@ -15,7 +15,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 /// Composition of dependencies is a process of creating and configuring
 /// instances of classes that are required for the application to work.
 final class CompositionRoot {
-  const CompositionRoot({required this.config, required this.logger, required this.errorReporter});
+  const CompositionRoot({
+    required this.config,
+    required this.logger,
+    required this.errorReporter,
+  });
 
   /// Application configuration.
   final ApplicationConfig config;
@@ -33,10 +37,16 @@ final class CompositionRoot {
     logger.info('Initializing dependencies...');
 
     // Create the dependencies container using functions.
-    final dependencies = await createDependenciesContainer(config, logger, errorReporter);
+    final dependencies = await createDependenciesContainer(
+      config,
+      logger,
+      errorReporter,
+    );
 
     stopwatch.stop();
-    logger.info('Dependencies initialized successfully in ${stopwatch.elapsedMilliseconds} ms.');
+    logger.info(
+      'Dependencies initialized successfully in ${stopwatch.elapsedMilliseconds} ms.',
+    );
 
     return CompositionResult(
       dependencies: dependencies,
@@ -47,7 +57,10 @@ final class CompositionRoot {
 
 /// Result of composition.
 final class CompositionResult {
-  const CompositionResult({required this.dependencies, required this.millisecondsSpent});
+  const CompositionResult({
+    required this.dependencies,
+    required this.millisecondsSpent,
+  });
 
   /// The dependencies container.
   final DependenciesContainer dependencies;
@@ -115,7 +128,9 @@ Future<ErrorReporter> createErrorReporter(ApplicationConfig config) async {
 /// Creates an instance of [AppSettingsBloc].
 ///
 /// The [AppSettingsBloc] is initialized at startup to load the app settings from local storage.
-Future<AppSettingsBloc> createAppSettingsBloc(SharedPreferencesAsync sharedPreferences) async {
+Future<AppSettingsBloc> createAppSettingsBloc(
+  SharedPreferencesAsync sharedPreferences,
+) async {
   final appSettingsRepository = AppSettingsRepositoryImpl(
     datasource: AppSettingsDatasourceImpl(sharedPreferences: sharedPreferences),
   );
@@ -123,5 +138,8 @@ Future<AppSettingsBloc> createAppSettingsBloc(SharedPreferencesAsync sharedPrefe
   final appSettings = await appSettingsRepository.getAppSettings();
   final initialState = AppSettingsState.idle(appSettings: appSettings);
 
-  return AppSettingsBloc(appSettingsRepository: appSettingsRepository, initialState: initialState);
+  return AppSettingsBloc(
+    appSettingsRepository: appSettingsRepository,
+    initialState: initialState,
+  );
 }

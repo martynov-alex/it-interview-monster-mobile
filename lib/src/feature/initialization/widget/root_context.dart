@@ -27,7 +27,9 @@ class RootContext extends StatelessWidget {
       bundle: SentryAssetBundle(),
       child: DependenciesScope(
         dependencies: compositionResult.dependencies,
-        child: const SettingsScope(child: WindowSizeScope(child: MaterialContext())),
+        child: const SettingsScope(
+          child: WindowSizeScope(child: MaterialContext()),
+        ),
       ),
     );
   }

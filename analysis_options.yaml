@@ -1,10 +1,13 @@
 include: package:sizzle_lints/lints.yaml
 
 analyzer:
-  exclude: 
+  exclude:
     - "lib/src/core/localization/generated/**"
     - "**/*.*.dart"
 
 dart_code_metrics:
   extends:
     - package:sizzle_lints/dcm.yaml
+
+formatter:
+  page_width: 80

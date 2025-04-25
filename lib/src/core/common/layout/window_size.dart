@@ -19,7 +19,8 @@ extension type const WindowSize(Size _size) implements Size {
   bool get isMedium => maybeMap(orElse: () => false, medium: () => true);
 
   /// Returns true if the window size is medium or larger.
-  bool get isMediumOrLarger => maybeMap(orElse: () => true, compact: () => false);
+  bool get isMediumOrLarger =>
+      maybeMap(orElse: () => true, compact: () => false);
 
   /// Returns true if the window size is expanded.
   bool get isExpanded => maybeMap(orElse: () => false, expanded: () => true);
@@ -36,7 +37,8 @@ extension type const WindowSize(Size _size) implements Size {
       maybeMap(orElse: () => false, large: () => true, extraLarge: () => true);
 
   /// Returns true if the window size is extra large.
-  bool get isExtraLarge => maybeMap(orElse: () => false, extraLarge: () => true);
+  bool get isExtraLarge =>
+      maybeMap(orElse: () => false, extraLarge: () => true);
 
   /// Maps the [WindowSize] to a value of type [T].
   T map<T>({
@@ -112,5 +114,6 @@ class _InheritedWindowSize extends InheritedWidget {
   final WindowSize windowSize;
 
   @override
-  bool updateShouldNotify(_InheritedWindowSize oldWidget) => windowSize != oldWidget.windowSize;
+  bool updateShouldNotify(_InheritedWindowSize oldWidget) =>
+      windowSize != oldWidget.windowSize;
 }

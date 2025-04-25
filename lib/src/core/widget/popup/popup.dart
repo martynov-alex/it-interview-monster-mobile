@@ -94,10 +94,13 @@ class PopupBuilder extends StatefulWidget {
   ///
   /// A [DisplayFeature] obstructs the screen when the area it occupies is
   /// not 0 or the `state` is [DisplayFeatureState.postureHalfOpened].
-  static Iterable<Rect> findDisplayFeatureBounds(List<DisplayFeature> features) => features
+  static Iterable<Rect> findDisplayFeatureBounds(
+    List<DisplayFeature> features,
+  ) => features
       .where(
         (DisplayFeature d) =>
-            d.bounds.shortestSide > 0 || d.state == DisplayFeatureState.postureHalfOpened,
+            d.bounds.shortestSide > 0 ||
+            d.state == DisplayFeatureState.postureHalfOpened,
       )
       .map((DisplayFeature d) => d.bounds);
 
@@ -115,14 +118,16 @@ class _PopupBuilderState extends State<PopupBuilder> {
   @override
   void initState() {
     super.initState();
-    portalController = widget.controller ?? OverlayPortalController(debugLabel: 'Popup');
+    portalController =
+        widget.controller ?? OverlayPortalController(debugLabel: 'Popup');
   }
 
   @override
   void didUpdateWidget(covariant PopupBuilder oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (!identical(widget.controller, oldWidget.controller)) {
-      portalController = widget.controller ?? OverlayPortalController(debugLabel: 'Popup');
+      portalController =
+          widget.controller ?? OverlayPortalController(debugLabel: 'Popup');
     }
   }
 
@@ -140,7 +145,8 @@ class _PopupBuilderState extends State<PopupBuilder> {
         overlayChildBuilder:
             (BuildContext context) => Center(
               child: EnhancedCompositedTransformFollower(
-                link: _layerLink, // link the follower widget to the target widget.
+                link:
+                    _layerLink, // link the follower widget to the target widget.
                 followerAnchor: widget.followerAnchor,
                 targetAnchor: widget.targetAnchor,
                 enforceLeaderWidth: widget.enforceLeaderWidth,
@@ -157,7 +163,8 @@ class _PopupBuilderState extends State<PopupBuilder> {
 }
 
 /// Follower builder that wraps the child widget.
-typedef PopupFollowerBuilder = Widget Function(BuildContext context, Widget? child);
+typedef PopupFollowerBuilder =
+    Widget Function(BuildContext context, Widget? child);
 
 /// Handles for follower widgets.
 abstract interface class PopupFollowerController {
@@ -247,7 +254,9 @@ class _PopupFollowerState extends State<PopupFollower>
   @override
   void didChangeDependencies() {
     _scrollPosition?.removeListener(_scrollableListener);
-    _scrollPosition = Scrollable.maybeOf(context)?.position?..addListener(_scrollableListener);
+    _scrollPosition =
+        Scrollable.maybeOf(context)?.position
+          ?..addListener(_scrollableListener);
     _parent = _FollowerScope.maybeOf(context, listen: true);
     super.didChangeDependencies();
   }
@@ -293,7 +302,9 @@ class _PopupFollowerState extends State<PopupFollower>
       },
       child: Shortcuts(
         debugLabel: 'PopupFollower',
-        shortcuts: {LogicalKeySet(LogicalKeyboardKey.escape): const DismissIntent()},
+        shortcuts: {
+          LogicalKeySet(LogicalKeyboardKey.escape): const DismissIntent(),
+        },
         child: Semantics(
           container: true,
           explicitChildNodes: true,
@@ -307,7 +318,10 @@ class _PopupFollowerState extends State<PopupFollower>
               groupId: widget.tapRegionGroupId,
               consumeOutsideTaps: widget.consumeOutsideTaps,
               onTapOutside: (_) => widget.onDismiss?.call(),
-              child: ConstrainedBox(constraints: widget.constraints, child: widget.child),
+              child: ConstrainedBox(
+                constraints: widget.constraints,
+                child: widget.child,
+              ),
             ),
           ),
         ),
@@ -319,7 +333,11 @@ class _PopupFollowerState extends State<PopupFollower>
 /// Follower Scope
 class _FollowerScope extends InheritedWidget {
   /// Creates a new instance of [_FollowerScope].
-  const _FollowerScope({required super.child, required this.controller, this.parent});
+  const _FollowerScope({
+    required super.child,
+    required this.controller,
+    this.parent,
+  });
 
   /// The controller that is used to dismiss the popup.
   final PopupFollowerController controller;
@@ -331,7 +349,9 @@ class _FollowerScope extends InheritedWidget {
   static _FollowerScope? maybeOf(BuildContext context, {bool listen = false}) =>
       listen
           ? context.dependOnInheritedWidgetOfExactType<_FollowerScope>()
-          : context.getElementForInheritedWidgetOfExactType<_FollowerScope>()?.widget
+          : context
+                  .getElementForInheritedWidgetOfExactType<_FollowerScope>()
+                  ?.widget
               as _FollowerScope?;
 
   @override

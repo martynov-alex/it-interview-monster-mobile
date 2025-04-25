@@ -7,7 +7,10 @@ import 'package:sentry_flutter/sentry_flutter.dart';
 /// {@endtemplate}
 class SentryErrorReporter implements ErrorReporter {
   /// {@macro sentry_error_reporter}
-  const SentryErrorReporter({required this.sentryDsn, required this.environment});
+  const SentryErrorReporter({
+    required this.sentryDsn,
+    required this.environment,
+  });
 
   /// The Sentry DSN.
   final String sentryDsn;
@@ -38,7 +41,10 @@ class SentryErrorReporter implements ErrorReporter {
   }
 
   @override
-  Future<void> captureException({required Object throwable, StackTrace? stackTrace}) async {
+  Future<void> captureException({
+    required Object throwable,
+    StackTrace? stackTrace,
+  }) async {
     await Sentry.captureException(throwable, stackTrace: stackTrace);
   }
 }

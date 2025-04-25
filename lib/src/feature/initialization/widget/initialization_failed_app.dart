@@ -24,7 +24,8 @@ class InitializationFailedApp extends StatefulWidget {
   });
 
   @override
-  State<InitializationFailedApp> createState() => _InitializationFailedAppState();
+  State<InitializationFailedApp> createState() =>
+      _InitializationFailedAppState();
 }
 
 class _InitializationFailedAppState extends State<InitializationFailedApp> {
@@ -58,9 +59,15 @@ class _InitializationFailedAppState extends State<InitializationFailedApp> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Initialization failed', style: typography.headlineMedium),
+                  Text(
+                    'Initialization failed',
+                    style: typography.headlineMedium,
+                  ),
                   if (widget.onRetryInitialization != null)
-                    IconButton(icon: const Icon(Icons.refresh), onPressed: _retryInitialization),
+                    IconButton(
+                      icon: const Icon(Icons.refresh),
+                      onPressed: _retryInitialization,
+                    ),
                 ],
               ),
               const SizedBox(height: 16),
@@ -71,7 +78,10 @@ class _InitializationFailedAppState extends State<InitializationFailedApp> {
               const SizedBox(height: 16),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text('${widget.stackTrace}', style: typography.bodyLarge),
+                child: Text(
+                  '${widget.stackTrace}',
+                  style: typography.bodyLarge,
+                ),
               ),
             ],
           ),

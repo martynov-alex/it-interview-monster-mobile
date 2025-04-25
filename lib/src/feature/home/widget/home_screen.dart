@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:it_interview_monster/src/feature/initialization/widget/dependencies_scope.dart';
 
-/// {@template home_screen}
 /// HomeScreen is a simple screen that displays a grid of items.
-/// {@endtemplate}
 class HomeScreen extends StatefulWidget {
-  /// {@macro home_screen}
   const HomeScreen({super.key});
 
   @override
@@ -30,7 +27,10 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text('Hello world!', style: Theme.of(context).textTheme.headlineLarge),
+            Text(
+              'Hello world!',
+              style: Theme.of(context).textTheme.headlineLarge,
+            ),
             const SizedBox(height: 16),
             Builder(builder: (context) => const Text('Hello')),
           ],

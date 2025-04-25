@@ -22,7 +22,8 @@ class MaterialSpacer extends StatelessWidget {
 /// Spacing that is applied to element to both the left and right.
 /// {@endtemplate}
 class HorizontalSpacing extends EdgeInsets {
-  const HorizontalSpacing._(final double value) : super.symmetric(horizontal: value);
+  const HorizontalSpacing._(final double value)
+    : super.symmetric(horizontal: value);
 
   /// Horizontal spacing for WindowSize.compact
   const HorizontalSpacing.compact() : this._(16);
@@ -34,6 +35,8 @@ class HorizontalSpacing extends EdgeInsets {
   /// the element and keep at width of [maxWidth]
   ///
   /// [windowWidth] is the width of a window.
-  factory HorizontalSpacing.centered(double windowWidth, [double maxWidth = 768]) =>
-      HorizontalSpacing._(math.max((windowWidth - maxWidth) / 2, 16));
+  factory HorizontalSpacing.centered(
+    double windowWidth, [
+    double maxWidth = 768,
+  ]) => HorizontalSpacing._(math.max((windowWidth - maxWidth) / 2, 16));
 }
