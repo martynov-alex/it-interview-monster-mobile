@@ -1,4 +1,4 @@
-include: package:sizzle_lints/lints.yaml
+include: package:flutter_lints/flutter.yaml
 
 analyzer:
   exclude:
@@ -7,7 +7,7 @@ analyzer:
 
 dart_code_metrics:
   extends:
-    - package:sizzle_lints/dcm.yaml
+    - recommended
 
 formatter:
   page_width: 80
