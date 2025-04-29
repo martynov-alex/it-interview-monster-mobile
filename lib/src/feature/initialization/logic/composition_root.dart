@@ -2,6 +2,12 @@ import 'package:clock/clock.dart';
 import 'package:it_interview_monster/src/core/common/error_reporter/error_reporter.dart';
 import 'package:it_interview_monster/src/core/common/error_reporter/sentry_error_reporter.dart';
 import 'package:it_interview_monster/src/core/constant/application_config.dart';
+import 'package:it_interview_monster/src/core/navigation/router.dart';
+import 'package:it_interview_monster/src/feature/auth/data/auth_data_source.dart';
+import 'package:it_interview_monster/src/feature/auth/data/auth_repository.dart';
+import 'package:it_interview_monster/src/feature/auth/data/token_storage.dart';
+import 'package:it_interview_monster/src/feature/auth/domain/bloc/auth_bloc.dart';
+import 'package:it_interview_monster/src/feature/auth/domain/entity/authentication_status.dart';
 import 'package:it_interview_monster/src/feature/initialization/model/dependencies_container.dart';
 import 'package:it_interview_monster/src/feature/settings/bloc/app_settings_bloc.dart';
 import 'package:it_interview_monster/src/feature/settings/data/app_settings_datasource.dart';
@@ -91,12 +97,19 @@ Future<DependenciesContainer> createDependenciesContainer(
   // Create the AppSettingsBloc using shared preferences.
   final appSettingsBloc = await createAppSettingsBloc(sharedPreferences);
 
+  // Create the AuthBloc using shared preferences.
+  final authBloc = await createAuthBloc(sharedPreferences, errorReporter);
+
+  final router = AppRouter.getRouter(StreamToListenable([authBloc.stream]));
+
   return DependenciesContainer(
     logger: logger,
     config: config,
+    router: router,
+    appSettingsBloc: appSettingsBloc,
+    authBloc: authBloc,
     errorReporter: errorReporter,
     packageInfo: packageInfo,
-    appSettingsBloc: appSettingsBloc,
   );
 }
 
@@ -141,5 +154,27 @@ Future<AppSettingsBloc> createAppSettingsBloc(
   return AppSettingsBloc(
     appSettingsRepository: appSettingsRepository,
     initialState: initialState,
+  );
+}
+
+Future<AuthBloc> createAuthBloc(
+  SharedPreferencesAsync sharedPreferences,
+  ErrorReporter errorReporter,
+) async {
+  final storage = TokenStorageImpl(sharedPreferences: sharedPreferences);
+  final token = await storage.load();
+
+  return AuthBloc(
+    AuthState.idle(
+      status:
+          token != null
+              ? AuthenticationStatus.authenticated
+              : AuthenticationStatus.unauthenticated,
+    ),
+    authRepository: AuthRepositoryImpl(
+      dataSource: FakeAuthDataSource(),
+      storage: storage,
+    ),
+    errorReporter: errorReporter,
   );
 }

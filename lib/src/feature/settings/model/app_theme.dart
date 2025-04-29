@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 /// An immutable class that holds properties needed to build a [ThemeData] for the app.
 @immutable
@@ -23,11 +24,18 @@ final class AppTheme with Diagnosticable {
   /// This can also be used to add additional properties to the [ThemeData],
   /// such as extensions or custom properties.
   ThemeData buildThemeData(Brightness brightness) {
-    final colorScheme = ColorScheme.fromSeed(
-      seedColor: seed,
-      brightness: brightness,
+    final baseTheme = switch (brightness) {
+      Brightness.light => ThemeData.light(useMaterial3: true),
+      Brightness.dark => ThemeData.dark(useMaterial3: true),
+    };
+
+    return baseTheme.copyWith(
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: seed,
+        brightness: brightness,
+      ),
+      textTheme: GoogleFonts.jostTextTheme(baseTheme.textTheme),
     );
-    return ThemeData.from(colorScheme: colorScheme, useMaterial3: true);
   }
 
   @override

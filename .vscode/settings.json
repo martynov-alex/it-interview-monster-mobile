@@ -5,6 +5,7 @@
     "cronet",
     "excludesfile",
     "hexcode",
+    "jost",
     "onauth",
     "swiftpm",
     "Symbolication",

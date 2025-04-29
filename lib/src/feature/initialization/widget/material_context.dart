@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:it_interview_monster/src/core/constant/localization/localization.dart';
-import 'package:it_interview_monster/src/feature/home/widget/home_screen.dart';
+import 'package:it_interview_monster/src/feature/initialization/widget/dependencies_scope.dart';
 import 'package:it_interview_monster/src/feature/settings/model/app_theme.dart';
 import 'package:it_interview_monster/src/feature/settings/widget/settings_scope.dart';
 
@@ -17,6 +17,7 @@ class MaterialContext extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final settings = SettingsScope.settingsOf(context);
+    final dependencies = DependenciesScope.of(context);
     final mediaQueryData = MediaQuery.of(context);
 
     final theme = settings.appTheme ?? AppTheme.defaultTheme;
@@ -25,14 +26,15 @@ class MaterialContext extends StatelessWidget {
 
     final themeMode = theme.themeMode;
 
-    return MaterialApp(
+    return MaterialApp.router(
+      debugShowCheckedModeBanner: dependencies.config.isDebug,
       theme: lightTheme,
       darkTheme: darkTheme,
       themeMode: themeMode,
       locale: settings.locale,
       localizationsDelegates: Localization.localizationDelegates,
       supportedLocales: Localization.supportedLocales,
-      home: const HomeScreen(),
+      routerConfig: dependencies.router,
       builder:
           (context, child) => MediaQuery(
             key: _globalKey,

@@ -1,41 +1,48 @@
 import 'package:flutter/material.dart';
-import 'package:it_interview_monster/src/core/constant/localization/app_localization_extension.dart';
-import 'package:it_interview_monster/src/feature/initialization/widget/dependencies_scope.dart';
+import 'package:go_router/go_router.dart';
+import 'package:it_interview_monster/src/core/navigation/routes.dart';
 
-/// HomeScreen is a simple screen that displays a grid of items.
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({super.key, required this.navigator});
+
+  final Widget navigator;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  late final _logger = DependenciesScope.of(context).logger;
-
-  @override
-  void initState() {
-    super.initState();
-    _logger.info('Hello world!');
+  int getCurrentIndex(BuildContext context) {
+    final String location = GoRouterState.of(context).uri.path;
+    if (location.startsWith('/settings')) {
+      return 1;
+    }
+    return 0;
   }
 
   @override
   Widget build(BuildContext context) {
+    final int selectedIndex = getCurrentIndex(context);
+
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.surface,
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Text(
-              context.l10n.appTitle,
-              style: Theme.of(context).textTheme.headlineLarge,
-            ),
-            const SizedBox(height: 16),
-            Builder(builder: (context) => const Text('Hello')),
-          ],
-        ),
+      body: Center(child: widget.navigator),
+      bottomNavigationBar: NavigationBar(
+        destinations: const <NavigationDestination>[
+          NavigationDestination(
+            icon: Icon(Icons.dataset_outlined),
+            label: 'Вопросы',
+          ),
+          NavigationDestination(icon: Icon(Icons.settings), label: 'Настройки'),
+        ],
+        selectedIndex: selectedIndex,
+        onDestinationSelected: (int index) {
+          switch (index) {
+            case 0:
+              const QuestionListRouteData().go(context);
+            case 1:
+              const SettingsRouteData().go(context);
+          }
+        },
       ),
     );
   }

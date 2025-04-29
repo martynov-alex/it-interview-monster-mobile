@@ -23,6 +23,8 @@ class ApplicationConfig {
 
   /// Whether Sentry is enabled.
   bool get enableSentry => sentryDsn.isNotEmpty;
+
+  bool get isDebug => environment == Environment.dev;
 }
 
 /// A special version of [ApplicationConfig] that is used in tests.

@@ -1,5 +1,7 @@
+import 'package:go_router/go_router.dart';
 import 'package:it_interview_monster/src/core/common/error_reporter/error_reporter.dart';
 import 'package:it_interview_monster/src/core/constant/application_config.dart';
+import 'package:it_interview_monster/src/feature/auth/domain/bloc/auth_bloc.dart';
 import 'package:it_interview_monster/src/feature/settings/bloc/app_settings_bloc.dart';
 import 'package:logger/logger.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -9,7 +11,9 @@ class DependenciesContainer {
   const DependenciesContainer({
     required this.logger,
     required this.config,
+    required this.router,
     required this.appSettingsBloc,
+    required this.authBloc,
     required this.errorReporter,
     required this.packageInfo,
   });
@@ -20,8 +24,14 @@ class DependenciesContainer {
   /// [ApplicationConfig] instance, contains configuration of the application.
   final ApplicationConfig config;
 
+  /// [GoRouter] instance, used to manage routing.
+  final GoRouter router;
+
   /// [AppSettingsBloc] instance, used to manage theme and locale.
   final AppSettingsBloc appSettingsBloc;
+
+  /// [AuthBloc] instance, used to manage authentication.
+  final AuthBloc authBloc;
 
   /// [ErrorReporter] instance, used to report errors.
   final ErrorReporter errorReporter;
