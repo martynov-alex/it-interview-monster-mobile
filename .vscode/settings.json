@@ -5,5 +5,9 @@
   "dart.lineLength": 100,
   "dart.flutterSdkPath": ".fvm/versions/stable",
   "cmake.ignoreCMakeListsMissing": true,
-  "makefile.configureOnOpen": false
+  "makefile.configureOnOpen": false,
+  "cSpell.words": [
+    "Cronet",
+    "excludesfile"
+  ]
 }

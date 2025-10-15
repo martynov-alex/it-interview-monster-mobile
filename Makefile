@@ -6,7 +6,7 @@ help:
 	@echo "Available commands:"
 	@{ \
 	  printf "%-25s %s\n" "make get" "Get Flutter dependencies"; \
-		printf "%-25s %s\n" "make bootstrap" "Bootstrap Project"; \
+	  printf "%-25s %s\n" "make bootstrap" "Bootstrap Project"; \
 	  printf "%-25s %s\n" "make gen" "Generate Dart files"; \
 	  printf "%-25s %s\n" "make gen-watch" "Watch and generate Dart files"; \
 	}
