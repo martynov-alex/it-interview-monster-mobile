@@ -30,3 +30,10 @@ gen-watch:
 	@echo "Watching Dart codegen..."
 	dart run build_runner watch -d
 
+# Task: Initialize template for development
+# should be removed if you're using Sizzle Starter for your project
+template-dev-init:
+	@echo "Initializing template for development..."
+	@echo 'android/\nios/\nweb/\nwindows/\nmacos/\nlinux/\n' > .dev.gitignore
+	@git config core.excludesfile .dev.gitignore
+	@cd app && flutter create --org com.sizzle.sizzle_starter . && rm -f test/widget_test.dart

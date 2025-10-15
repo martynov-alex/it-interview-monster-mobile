@@ -1,13 +1,15 @@
-include: package:flutter_lints/flutter.yaml
+include: package:sizzle_lints/lints.yaml
+
+formatter:
+  page_width: 100
+  trailing_commas: preserve
 
 analyzer:
   exclude:
     - "lib/src/core/localization/generated/**"
     - "**/*.*.dart"
+    - "**/generated/**"
 
 dart_code_metrics:
   extends:
-    - recommended
-
-formatter:
-  page_width: 80
+    - package:sizzle_lints/dcm.yaml
