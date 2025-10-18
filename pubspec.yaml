@@ -12,6 +12,7 @@ workspace:
   - app
 
   # Core
+  - core/api
   - core/common
   - core/analytics
   - core/logger

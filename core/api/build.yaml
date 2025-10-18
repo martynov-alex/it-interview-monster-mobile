@@ -1,0 +1,26 @@
+global_options:
+  freezed:
+    runs_before:
+      - json_serializable
+  json_serializable:
+    runs_before:
+      - retrofit_generator
+
+targets:
+  $default:
+    builders:
+      json_serializable:
+        enabled: true
+        options:
+          explicit_to_json: true
+          field_rename: snake
+          any_map: true
+          checked: false
+      freezed:
+        enabled: true
+        options:
+          union_key: type
+          union_value_case: pascal
+      retrofit_generator:
+        enabled: true
+

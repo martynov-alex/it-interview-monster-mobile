@@ -7,6 +7,15 @@
   "cmake.ignoreCMakeListsMissing": true,
   "makefile.configureOnOpen": false,
   "cSpell.words": [
+    "билдеров",
+    "горутина",
+    "иммутабельные",
+    "иммутабельных",
+    "кодогенерации",
+    "коммитится",
+    "парсинга",
+    "сериализатор",
+    "сериализатора",
     "Cronet",
     "Edtech",
     "excludesfile"

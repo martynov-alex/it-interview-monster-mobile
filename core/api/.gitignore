@@ -1,0 +1,11 @@
+# Build files
+*.g.dart
+*.freezed.dart
+.dart_tool/
+build/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+

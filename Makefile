@@ -1,5 +1,5 @@
 # Define phony targets to avoid conflicts with files
-.PHONY: flutter-get dart-gen dart-gen-watch template-dev-init tmpl-git-config
+.PHONY: flutter-get dart-gen dart-gen-watch gen-api template-dev-init tmpl-git-config
 
 # Default help command
 help:
@@ -9,6 +9,7 @@ help:
 	  printf "%-25s %s\n" "make bootstrap" "Bootstrap Project"; \
 	  printf "%-25s %s\n" "make gen" "Generate Dart files"; \
 	  printf "%-25s %s\n" "make gen-watch" "Watch and generate Dart files"; \
+	  printf "%-25s %s\n" "make gen-api" "Generate API client from OpenAPI"; \
 	}
 
 # Task: Get flutter dependencies
@@ -29,6 +30,11 @@ gen:
 gen-watch:
 	@echo "Watching Dart codegen..."
 	dart run build_runner watch -d
+
+# Task: Generate API client from OpenAPI specification
+gen-api:
+	@echo "Generating API client from OpenAPI..."
+	bash scripts/generate_api.bash
 
 init-platform:
 	@echo "Initializing platform..."

@@ -1,0 +1,427 @@
+openapi: 3.0.3
+info:
+  title: IT Interview Monster API
+  description: API для управления вопросами технических интервью
+  version: 1.0.0
+  contact:
+    name: API Support
+servers:
+  - url: http://localhost:8080/api/question/v1
+    description: Local development server
+  - url: https://api.it-interview-monster.com/api/question/v1
+    description: Production server
+
+tags:
+  - name: questions
+    description: Операции с вопросами для интервью
+
+paths:
+  /question:
+    post:
+      tags:
+        - questions
+      summary: Создать новый вопрос
+      description: Создает новый вопрос с указанными параметрами
+      operationId: createQuestion
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateQuestionInput'
+            examples:
+              golangConcurrency:
+                summary: Вопрос по Golang конкурентности
+                value:
+                  language_code: "ru"
+                  topic_tags:
+                    - topic: "Golang"
+                      tag: "concurrency"
+                  grade: "middle"
+                  short_text: "Что такое горутина?"
+                  full_text: ""
+                  answer_text: "Легковесный поток"
+                  code: false
+      responses:
+        '200':
+          description: Вопрос успешно создан
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateQuestionOutput'
+              examples:
+                success:
+                  value:
+                    id: "123e4567-e89b-12d3-a456-426614174000"
+        '400':
+          description: Неверный формат запроса
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                validationError:
+                  value:
+                    error: "request failed: validation error"
+
+    get:
+      tags:
+        - questions
+      summary: Получить вопрос по ID
+      description: Возвращает полную информацию о вопросе по его идентификатору
+      operationId: getQuestion
+      parameters:
+        - name: id
+          in: query
+          required: true
+          description: Уникальный идентификатор вопроса
+          schema:
+            type: string
+            format: uuid
+          example: "123e4567-e89b-12d3-a456-426614174000"
+        - name: language_code
+          in: query
+          required: true
+          description: Код языка (ru, en)
+          schema:
+            type: string
+            minLength: 2
+            maxLength: 2
+          example: "ru"
+      responses:
+        '200':
+          description: Вопрос найден
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetQuestionOutput'
+              examples:
+                success:
+                  value:
+                    id: "123e4567-e89b-12d3-a456-426614174000"
+                    created_at: "2025-10-18T12:00:00Z"
+                    updated_at: "2025-10-18T12:00:00Z"
+                    short_text: "Что такое горутина?"
+                    full_text: "Подробное описание вопроса"
+                    answer_text: "Легковесный поток"
+                    code: false
+                    topics: ["Golang"]
+                    tags: ["concurrency"]
+                    grade: "middle"
+        '400':
+          description: Неверный формат запроса
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: Вопрос не найден
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                notFound:
+                  value:
+                    error: "question not found"
+
+  /questions:
+    get:
+      tags:
+        - questions
+      summary: Получить список вопросов
+      description: Возвращает список вопросов с возможностью фильтрации и пагинации
+      operationId: getQuestions
+      parameters:
+        - name: language_code
+          in: query
+          required: true
+          description: Код языка (ru, en)
+          schema:
+            type: string
+            minLength: 2
+            maxLength: 2
+          example: "ru"
+        - name: topic
+          in: query
+          required: true
+          description: Название темы для фильтрации
+          schema:
+            type: string
+          example: "Golang"
+        - name: tags
+          in: query
+          required: false
+          description: Список тегов для фильтрации (разделенные запятой)
+          schema:
+            type: string
+          example: "concurrency,channels"
+        - name: grade
+          in: query
+          required: false
+          description: Уровень сложности
+          schema:
+            type: string
+            enum: [junior, middle, senior]
+          example: "middle"
+        - name: code
+          in: query
+          required: false
+          description: Фильтр вопросов с кодом
+          schema:
+            type: boolean
+          example: true
+        - name: sort
+          in: query
+          required: false
+          description: Поле для сортировки
+          schema:
+            type: string
+            enum: [created_at, updated_at, short_text]
+            default: created_at
+          example: "created_at"
+        - name: order
+          in: query
+          required: false
+          description: Порядок сортировки
+          schema:
+            type: string
+            enum: [asc, desc]
+            default: asc
+          example: "desc"
+        - name: offset
+          in: query
+          required: false
+          description: Смещение для пагинации
+          schema:
+            type: integer
+            minimum: 0
+            default: 0
+          example: 0
+        - name: limit
+          in: query
+          required: false
+          description: Количество элементов на странице
+          schema:
+            type: integer
+            minimum: 0
+            maximum: 100
+            default: 10
+          example: 10
+      responses:
+        '200':
+          description: Список вопросов
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetQuestionsOutput'
+              examples:
+                success:
+                  value:
+                    questions:
+                      - id: "123e4567-e89b-12d3-a456-426614174000"
+                        created_at: "2025-10-18T12:00:00Z"
+                        updated_at: "2025-10-18T12:00:00Z"
+                        short_text: "Что такое горутина?"
+                      - id: "223e4567-e89b-12d3-a456-426614174001"
+                        created_at: "2025-10-18T13:00:00Z"
+                        updated_at: "2025-10-18T13:00:00Z"
+                        short_text: "Как работают каналы?"
+        '400':
+          description: Неверный формат запроса
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /question/{id}:
+    delete:
+      tags:
+        - questions
+      summary: Удалить вопрос
+      description: Удаляет вопрос по его идентификатору
+      operationId: deleteQuestion
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: Уникальный идентификатор вопроса
+          schema:
+            type: string
+          example: "123e4567-e89b-12d3-a456-426614174000"
+      responses:
+        '204':
+          description: Вопрос успешно удален
+        '400':
+          description: Неверный формат запроса
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+  schemas:
+    CreateQuestionInput:
+      type: object
+      required:
+        - language_code
+        - topic_tags
+        - grade
+        - short_text
+        - answer_text
+      properties:
+        language_code:
+          type: string
+          description: Код языка
+          minLength: 2
+          maxLength: 2
+          example: "ru"
+        topic_tags:
+          type: array
+          description: Список пар тема-тег
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/TopicTagPair'
+        grade:
+          type: string
+          description: Уровень сложности
+          enum: [junior, middle, senior]
+          example: "middle"
+        short_text:
+          type: string
+          description: Краткий текст вопроса
+          maxLength: 255
+          example: "Что такое горутина?"
+        full_text:
+          type: string
+          description: Полный текст вопроса
+          example: "Подробное описание вопроса о горутинах"
+        answer_text:
+          type: string
+          description: Текст ответа на вопрос
+          example: "Легковесный поток"
+        code:
+          type: boolean
+          description: Признак вопроса с кодом
+          default: false
+
+    TopicTagPair:
+      type: object
+      required:
+        - topic
+        - tag
+      properties:
+        topic:
+          type: string
+          description: Название темы
+          minLength: 2
+          maxLength: 32
+          example: "Golang"
+        tag:
+          type: string
+          description: Название тега
+          minLength: 2
+          maxLength: 32
+          example: "concurrency"
+
+    CreateQuestionOutput:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Уникальный идентификатор созданного вопроса
+          example: "123e4567-e89b-12d3-a456-426614174000"
+
+    GetQuestionOutput:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Уникальный идентификатор вопроса
+          example: "123e4567-e89b-12d3-a456-426614174000"
+        created_at:
+          type: string
+          format: date-time
+          description: Дата и время создания
+          example: "2025-10-18T12:00:00Z"
+        updated_at:
+          type: string
+          format: date-time
+          description: Дата и время последнего обновления
+          example: "2025-10-18T12:00:00Z"
+        short_text:
+          type: string
+          description: Краткий текст вопроса
+          example: "Что такое горутина?"
+        full_text:
+          type: string
+          description: Полный текст вопроса
+          example: "Подробное описание вопроса"
+        answer_text:
+          type: string
+          description: Текст ответа на вопрос
+          example: "Легковесный поток"
+        code:
+          type: boolean
+          description: Признак вопроса с кодом
+          example: false
+        topics:
+          type: array
+          description: Список тем
+          items:
+            type: string
+          example: ["Golang"]
+        tags:
+          type: array
+          description: Список тегов
+          items:
+            type: string
+          example: ["concurrency", "goroutines"]
+        grade:
+          type: string
+          description: Уровень сложности
+          enum: [junior, middle, senior]
+          example: "middle"
+
+    GetQuestionsOutput:
+      type: object
+      properties:
+        questions:
+          type: array
+          description: Список вопросов
+          items:
+            $ref: '#/components/schemas/Question'
+
+    Question:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: Уникальный идентификатор вопроса
+          example: "123e4567-e89b-12d3-a456-426614174000"
+        created_at:
+          type: string
+          format: date-time
+          description: Дата и время создания
+          example: "2025-10-18T12:00:00Z"
+        updated_at:
+          type: string
+          format: date-time
+          description: Дата и время последнего обновления
+          example: "2025-10-18T12:00:00Z"
+        short_text:
+          type: string
+          description: Краткий текст вопроса
+          example: "Что такое горутина?"
+
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Описание ошибки
+          example: "request failed: validation error"
+
