@@ -9,9 +9,14 @@ environment:
   flutter: ">=3.35.3 <4.0.0"
 
 dependencies:
+  api:
+    path: ../../core/api
+  dio: ^5.7.0
   flutter:
     sdk: flutter
   flutter_bloc: ^9.1.1
+  rest_client:
+    path: ../../core/rest_client
   settings:
     path: ../settings
   ui_library:
