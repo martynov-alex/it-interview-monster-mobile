@@ -1,8 +1,8 @@
 import 'package:error_reporter/error_reporter.dart';
+import 'package:it_interview_monster/src/model/application_config.dart';
 import 'package:logger/logger.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:settings/settings.dart';
-import 'package:sizzle_starter/src/model/application_config.dart';
 
 /// Container for global dependencies.
 class DependenciesContainer {

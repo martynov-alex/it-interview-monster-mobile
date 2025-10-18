@@ -2,8 +2,8 @@ import 'package:common/common.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:it_interview_monster/src/model/dependencies_container.dart';
 import 'package:settings/settings.dart';
-import 'package:sizzle_starter/src/model/dependencies_container.dart';
 
 class DependenciesScope extends StatelessWidget {
   const DependenciesScope({

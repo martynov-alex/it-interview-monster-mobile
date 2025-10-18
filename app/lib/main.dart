@@ -1,3 +1,3 @@
-import 'package:sizzle_starter/src/logic/startup.dart';
+import 'package:it_interview_monster/src/logic/startup.dart';
 
 void main() => startup();

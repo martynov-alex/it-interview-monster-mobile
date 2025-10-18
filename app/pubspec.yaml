@@ -1,12 +1,12 @@
-name: sizzle_starter
-description: Production-ready template for Flutter applications.
+name: it_interview_monster
+description: Edtech project that uses spaced repetition to study and prepare for interviews.
 publish_to: "none"
 version: 0.0.1+1
 resolution: workspace
 
 environment:
   sdk: ">=3.9.2 <4.0.0"
-  flutter: ">=3.35.3 <4.0.0"
+  flutter: ">=3.35.6 <4.0.0"
 
 dependencies:
   # Flutter SDK

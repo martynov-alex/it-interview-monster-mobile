@@ -1,4 +1,4 @@
-import 'package:sizzle_starter/src/model/environment.dart';
+import 'package:it_interview_monster/src/model/environment.dart';
 
 /// Application configuration
 class ApplicationConfig {

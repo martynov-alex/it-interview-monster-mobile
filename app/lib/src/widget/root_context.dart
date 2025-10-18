@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sizzle_starter/src/logic/composition_root.dart';
-import 'package:sizzle_starter/src/widget/dependencies_scope.dart';
-import 'package:sizzle_starter/src/widget/material_context.dart';
+import 'package:it_interview_monster/src/logic/composition_root.dart';
+import 'package:it_interview_monster/src/widget/dependencies_scope.dart';
+import 'package:it_interview_monster/src/widget/material_context.dart';
 import 'package:ui_library/ui_library.dart';
 
 /// [RootContext] is an entry point to the application.
